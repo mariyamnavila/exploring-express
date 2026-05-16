@@ -1,4 +1,4 @@
-import express, {} from 'express';
+import express, { } from 'express';
 import { Pool } from 'pg';
 import config from './config';
 const app = express();
