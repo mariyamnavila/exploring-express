@@ -2,7 +2,6 @@ import { pool } from "../../db";
 import type { IProfile } from "./profile.interface";
 
 const createProfileIntoDB = async (payload: any) => {
-    // console.log(payload);
 
     const { user_id, bio, address, phone, gender } = payload;
 

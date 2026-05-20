@@ -2,7 +2,10 @@ import type { NextFunction, Request, Response } from "express";
 import jwt, { type JwtPayload } from 'jsonwebtoken';
 import config from "../config";
 import { pool } from "../db";
-const auth = () => {
+import type { ROLES } from "../types/indes";
+
+
+const auth = (...roles: ROLES[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
 
@@ -27,7 +30,7 @@ const auth = () => {
             WHERE email=$1
             `, [decoded.email])
 
-            console.log(userData);
+            // console.log(userData);
 
             const user = userData.rows[0];
 
@@ -38,10 +41,17 @@ const auth = () => {
                 })
             }
 
-            if (!user.is_active) {
+            if (!user?.is_active) {
                 res.status(403).json({
                     success: false,
                     message: "Forbidden!!"
+                })
+            }
+
+            if (roles.length && !roles.includes(user.role)) {
+                res.status(403).json({
+                    success: false,
+                    message: "Forbidden!!, this role have no access"
                 })
             }
 

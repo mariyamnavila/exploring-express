@@ -20,7 +20,6 @@ const createUser = async (req: Request, res: Response) => {
 }
 
 const getAllUser = async (req: Request, res: Response) => {
-    console.log(req.user);
     try {
         const result = await userService.getAllUsersFromDB();
         res.status(200).json({
