@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import jwt, { type JwtPayload } from 'jsonwebtoken';
 import config from "../config";
 import { pool } from "../db";
-import type { ROLES } from "../types/indes";
+import type { ROLES } from "../types";
 
 
 const auth = (...roles: ROLES[]) => {
