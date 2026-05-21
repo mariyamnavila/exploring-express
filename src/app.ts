@@ -16,6 +16,7 @@ app.use(express.text())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
     origin: "http://localhost:8000"
+    // origin: "https://express-server-ashy-eta.vercel.app"
 }))
 
 app.use(logger)
